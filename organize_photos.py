@@ -2,10 +2,12 @@ import os
 def extract_place(filename):
     return filename.split("_")[1]
 
-print(extract_place("2016-11-04_Berlin_09/42/22.jpg"))
+os.chdir("Photos")
+originals = os.listdir()
+places = []
 
-#os.chdir("Photos")
+for filename in originals:
+	place = extract_place(filename)
+	places.append(place)
 
-#originals = os.listdir()
-
-#print(originals)
+print(places)
