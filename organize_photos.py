@@ -4,17 +4,27 @@ def extract_place(filename):
     return filename.split("_")[1]
 
 def make_place_directories(places):
-	for place in places:
-		os.mkdir(place)
-	
-
-os.chdir("Photos")
-originals = os.listdir()
-places = []
+    for place in places:
+        os.mkdir(place)
 
 
-for filename in originals:
-	place = extract_place(filename)
-	places.append(place)
+def organize_photos(directory): 
 
-print(places)
+#First, extract place names.
+    os.chdir(directory)
+    originals = os.listdir()
+    places = []
+    for filename in originals:
+        place = extract_place(filename)
+        if place not in places:
+            places.append(place)
+            
+#second, make place directories.
+    make_place_directories(places)
+
+#Finally, move place directories.
+    for filename in originals:
+        place = extract_place(filename)
+        os.rename(filename, os.path.join(place, filename))
+
+organize_photos("Photos")
