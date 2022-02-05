@@ -1,4 +1,4 @@
-import os
+
 
 def extract_place(filename):
     return filename.split("_")[1]
@@ -27,4 +27,4 @@ def organize_photos(directory):
         place = extract_place(filename)
         os.rename(filename, os.path.join(place, filename))
 
-organize_photos("Photos")
+print("TEST!")
